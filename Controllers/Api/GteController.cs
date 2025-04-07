@@ -4,6 +4,8 @@ using MongoDB.Driver;
 [ApiController]
 [Route("api/gte")]
 public class GteController : Controller {
+
+    
     [HttpGet("listar-baños")]
     public IActionResult ListarBanios(){
         // Dame aquellos inmuebles que cuenten con 1 o más baños.

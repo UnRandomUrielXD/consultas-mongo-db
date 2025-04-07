@@ -4,6 +4,8 @@ using MongoDB.Driver;
 [ApiController]
 [Route("api/gt")]
 public class GtController : Controller {
+
+    
     [HttpGet("listar-baños")]
     public IActionResult ListarBanios(){
         // Enlista los registros que tengan más de dos baños.

@@ -4,6 +4,8 @@ using MongoDB.Driver;
 [ApiController]
 [Route("api/eq")]
 public class EqController : Controller {
+    
+
     [HttpGet("listar-nombres-agentes")]
     public IActionResult ListarNombresAgentes(){
         // Muestra todos los registros cuyo nombre de agente sea "Juan Pérez".
