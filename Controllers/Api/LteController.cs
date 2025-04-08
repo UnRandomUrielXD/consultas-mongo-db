@@ -32,4 +32,46 @@ public class LteController : Controller {
             return Ok (lista);
     }
 
-}    
+    //Dame el listado de los documentos con 553 metros de terreno o menos.
+    [HttpGet("listar-metros-t-553")]
+    public IActionResult ListarMetrosT553(){
+        
+        MongoClient client = new MongoClient(CadenasConexion.MONGO_DB);
+        var db = client.GetDatabase("Inmuebles");
+        var collection = db.GetCollection<Inmueble>("RentasVentas");
+
+            var filtro = Builders<Inmueble>.Filter.Lte(x => x.MetrosTerreno, 553);
+            var lista = collection.Find(filtro).ToList();
+            return Ok (lista);
+    }
+   
+
+
+ //Enlista los registros que tengan 1 pisos o menos.
+    [HttpGet("listar-piso-1")]
+    public IActionResult ListarPiso1(){
+        
+        MongoClient client = new MongoClient(CadenasConexion.MONGO_DB);
+        var db = client.GetDatabase("Inmuebles");
+        var collection = db.GetCollection<Inmueble>("RentasVentas");
+
+            var filtro = Builders<Inmueble>.Filter.Lte(x => x.Pisos, 1);
+            var lista = collection.Find(filtro).ToList();
+            return Ok (lista);
+    }
+ 
+
+ //Proporciona los inmuebles que tengan una cantidad de metros de construcción igual o menor a 322.
+    [HttpGet("listar-metros-c-322")]
+    public IActionResult ListarMetrosC322(){
+        
+        MongoClient client = new MongoClient(CadenasConexion.MONGO_DB);
+        var db = client.GetDatabase("Inmuebles");
+        var collection = db.GetCollection<Inmueble>("RentasVentas");
+
+            var filtro = Builders<Inmueble>.Filter.Lte(x => x.MetrosConstruccion, 322);
+            var lista = collection.Find(filtro).ToList();
+            return Ok (lista);
+    }
+
+  }

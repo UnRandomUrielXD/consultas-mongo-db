@@ -50,7 +50,7 @@ public class GteController : Controller {
         var db = client.GetDatabase("Inmuebles");
         var collection = db.GetCollection<Inmueble>("RentasVentas");
 
-            var filtro = Builders<Inmueble>.Filter.Gte(x => x.MetrosTerreno, 2);
+            var filtro = Builders<Inmueble>.Filter.Gte(x => x.MetrosTerreno, 900);
             var lista = collection.Find(filtro).ToList();
             return Ok (lista);
     }
