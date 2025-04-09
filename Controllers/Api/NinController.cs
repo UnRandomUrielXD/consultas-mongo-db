@@ -15,18 +15,18 @@ public class NinController : Controller {
         var collection = db.GetCollection<Inmueble>("RentasVentas");
 
         List<string> nombre_agenteNin = new List<string>();
-        nombre_agenteNin.Add("Juan Perez");
+        nombre_agenteNin.Add("Juan Pérez");
         nombre_agenteNin.Add("Ana Torres");
 
-        var filtro = Builders<Inmueble>.Filter.In(x => x.NombreAgente, nombre_agenteNin);
+        var filtro = Builders<Inmueble>.Filter.Nin(x => x.NombreAgente, nombre_agenteNin);
         var list = collection.Find(filtro).ToList();
         return Ok(list);
     }
 
 
- //Lista todos los inmuebles que estén bajo las agencias "Inmobiliaria Pérez" y "Fernández Inmuebles".
-    [HttpGet("listar-no-agencias-perez-fernandez")]
-    public IActionResult ListarNoAgenciasPerezFernandez(){
+ //Opciones de inmuebles que no sean de las agencias Garcia Propiedades ni Inmobiliaria Perez
+    [HttpGet("listar-no-agencias")]
+    public IActionResult ListarNoAgencias(){
         
         MongoClient client = new MongoClient(CadenasConexion.MONGO_DB);
         var db = client.GetDatabase("Inmuebles");
